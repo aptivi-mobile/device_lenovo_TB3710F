@@ -1,9 +1,10 @@
 ROOT="${PWD}"
 DEVICE_DIR="device/lenovo/TB3710F"
 REPOSITORIES=(
-	'external/wpa_supplicant_8'
+    'external/wpa_supplicant_8'
     'frameworks/av'
     'system/core'
+    'packages/apps/UnifiedEmail'
 )
 
 for repository in "${REPOSITORIES[@]}"; do
