@@ -92,6 +92,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1
 
-# Storage
+# Don't enable sdcardfs! It won't work and will cause apps to fail to write data to the
+# internal storage, causing some of them to FC! It's not compatible with the TB3-710F.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
+    ro.sys.sdcardfs=false
