@@ -1,2 +1,14 @@
+#
+# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_TB3710F.mk
+    $(LOCAL_DIR)/omni_TB3710F.mk
+
+COMMON_LUNCH_CHOICES := \
+    omni_TB3710F-user \
+    omni_TB3710F-userdebug \
+    omni_TB3710F-eng

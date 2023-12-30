@@ -1,5 +1,0 @@
-allow drmserver sysfs_devinfo:file { open read write };
-
-allow drmserver nvram_agent_service:service_manager find;
-
-allow drmserver nvram_agent_binder:binder call;
