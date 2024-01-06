@@ -193,3 +193,8 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 
 # Dalvik Tweak
 PRODUCT_TAGS += dalvik.gc.type-precise
+
+# Offline Charging
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
