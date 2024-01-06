@@ -115,3 +115,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
+
+# Misc
+PRODUCT_PACKAGES += \
+    LineageCustomizer \
+    Screencast \
+    FMRadio
