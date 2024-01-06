@@ -8,3 +8,4 @@ allow priv_app device:dir { read open };
 
 # Trustzone
 allow priv_app trustzone_device:chr_file { ioctl open read write };
+allow priv_app fm_device:chr_file { ioctl read write getattr lock append open };

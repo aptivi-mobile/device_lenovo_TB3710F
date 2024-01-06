@@ -12,3 +12,4 @@ allow platform_app pq_service:service_manager find;
 
 # Trustzone
 allow platform_app trustzone_device:chr_file { ioctl open read write };
+allow platform_app fm_device:chr_file { ioctl read write getattr lock append open };

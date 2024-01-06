@@ -271,8 +271,10 @@ on post-fs-data
     chown wifi wifi /data/misc/wifi
 
 	# FM Radio device node
+    mknod -Z u:object_r:fm_device:s0 /dev/fm c 193 0
     chmod 0660 /dev/fm
     chown system media /dev/fm
+    restorecon /dev/fm
 
 	# Char device for BT 3.0 HS
     chown bluetooth bluetooth /dev/ampc0
