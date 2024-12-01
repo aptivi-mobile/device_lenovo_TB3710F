@@ -118,6 +118,5 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
-    LineageCustomizer \
-    Screencast \
-    FMRadio
+    LineageCustomizer
+

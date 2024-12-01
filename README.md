@@ -66,7 +66,5 @@ Camera  | VGA (Front-Facing)
   <project name="aptivi-mobile/vendor_lenovo_TB3710F" path="vendor/lenovo/TB3710F" remote="github" revision="cm-14.1" />
 
   <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" revision="cm-14.1" />
-
-  <project name="LineageOS/android_packages_apps_Screencast" path="packages/apps/Screencast" remote="github" revision="cm-14.1" />
 </manifest>
 ```
