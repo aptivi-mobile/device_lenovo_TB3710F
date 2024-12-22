@@ -14,7 +14,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_HAVE_NEON := true
-ARCH_ARM_HAVE_VFP := true
 
 TARGET_NO_BOOTLOADER := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -57,10 +56,6 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_HAS_MTK_HARDWARE := true
 MTK_HARDWARE := true
 
-# Flags
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -DMTK_HARDWARE -mfpu=neon -mfloat-abi=softfp
-
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
@@ -77,6 +72,10 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # Surfaceflinger optimization for VD surfaces
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+VSYNC_EVENT_PHASE_OFFSET_NS := -5000000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := -5000000
 
 # Vold
 TARGET_KERNEL_HAVE_EXFAT := true
@@ -107,6 +106,7 @@ WIFI_DRIVER_FW_PATH_P2P := P2P
 WIFI_DRIVER_STATE_CTRL_PARAM := /dev/wmtWifi
 WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
+WPA_SUPPLICANT_USE_HIDL := true
 
 # BT
 BOARD_HAVE_BLUETOOTH := true
@@ -160,11 +160,33 @@ TARGET_SYSTEM_PROP := $(DEVICE_DIR)/system.prop
 BOARD_SECCOMP_POLICY += $(DEVICE_DIR)/seccomp
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_DIR)/sepolicy
+BOARD_SEPOLICY_DIRS += \
+        $(DEVICE_PATH)/sepolicy-mtk/basic/non_plat \
+        $(DEVICE_PATH)/sepolicy-mtk/bsp/non_plat \
+        $(DEVICE_PATH)/sepolicy-mt8127/basic \
+        $(DEVICE_PATH)/sepolicy-mt8127/bsp \
+        $(DEVICE_PATH)/sepolicy
+
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
+        $(DEVICE_PATH)/sepolicy-mtk/basic/plat_public \
+        $(DEVICE_PATH)/sepolicy-mtk/bsp/plat_public
+
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+        $(DEVICE_PATH)/sepolicy-mtk/basic/plat_private \
+        $(DEVICE_PATH)/sepolicy-mtk/bsp/plat_private
 
 # Shims
-TARGET_LDPRELOAD := libxlog.so:libmtk_symbols.so
-LINKER_FORCED_SHIM_LIBS := /system/lib/egl/libEGL_mali.so|libxlog.so:/system/lib/egl/libGLESv1_CM_mali.so|libxlog.so:/system/lib/egl/libGLESv2_mali.so|libxlog.so:/system/lib/libMtkOmxVenc.so|libmtk_symbols.so:/system/lib/libcam_utils.so|libmtk_symbols.so:/system/vendor/lib/libwvm.so|libmtk_symbols.so
+TARGET_LD_SHIM_LIBS := \
+	/system/bin/guiext-server|libmtk_symbols.so \
+	/system/lib/libgui_ext.so|libmtk_symbols.so \
+	/system/lib/hw/hwcomposer.mt8127.so|libmtk_symbols.so \
+	/system/lib/libMtkOmxVenc.so|libmtk_symbols.so \
+	/system/vendor/lib/libvcodecdrv.so|libmtk_symbols.so \
+	/system/lib/libcam_utils.so|libmtk_symbols.so \
+	/system/lib/libcam.utils.sensorlistener.so|libmtk_symbols.so \
+	/system/vendor/lib/libwvm.so|libmtk_symbols.so \
+	/system/lib/libcam.utils.sensorlistener.so|libmtk_symbols.so \
+	/system/lib/hw/gps.mt8127.so|libboringssl-compat.so
 
 # DEXPREOPT
 ifeq ($(TARGET_BUILD_VARIANT),user)

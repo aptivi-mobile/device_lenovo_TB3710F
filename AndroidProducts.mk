@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_TB3710F.mk
+    $(LOCAL_DIR)/lineage_TB3710F.mk

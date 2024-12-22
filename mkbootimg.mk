@@ -1,12 +1,11 @@
- 
 #
-# Copyright (C) 2013 The Android Open-Source Project
+# Copyright (C) 2017 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -65,11 +64,11 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG)\
 	@echo -e ${CL_CYN}"Made boot image: $@"${CL_RST}
 
 INTERNAL_MTK_RECOVERYIMAGE_ARGS := \
-		--kernel $(PRODUCT_OUT)/recovery_kernel.mtk \
+		--kernel $(INSTALLED_KERNEL_TARGET).mtk \
 		--ramdisk $(recovery_ramdisk).mtk
 
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
-		$(recovery_ramdisk).mtk $(PRODUCT_OUT)/recovery_kernel.mtk
+		$(recovery_ramdisk).mtk $(INSTALLED_KERNEL_TARGET).mtk
 	@echo -e ${CL_CYN}"----- Making recovery image ------"${CL_RST}
 	$(MKBOOTIMG) $(INTERNAL_MTK_RECOVERYIMAGE_ARGS) \
 		$(BOARD_MKBOOTIMG_ARGS) --output $@
